@@ -20,6 +20,7 @@ public class ParkingBasicDataSync implements InfrastructDeal {
 		parkingBasicDataSyncResponse.setMessage(ReturnCode.SUCCESS.toString());
 		parkingBasicDataSyncResponse.setPark_id("012e5ef643804cfa9e364fe6a5f90668");
 		parkingBasicDataSyncResponse.setSuccessful(true);
+		parkingBasicDataSyncResponse.setSecret_key("0eca8f5373ca4866aec2f8e9d9367104");
 		// parkingBasicDataSyncResponse.setMsg("this is first spring boot
 		// getbean method!这是第一个SPRING BOOT获取BEAN的方法！");
 		return JsonUtil.convertObject2String(parkingBasicDataSyncResponse);

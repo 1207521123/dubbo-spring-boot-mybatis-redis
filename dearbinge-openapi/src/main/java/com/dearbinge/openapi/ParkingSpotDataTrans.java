@@ -9,11 +9,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.dearbinge.data.pojo.Security;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -29,7 +33,7 @@ public class ParkingSpotDataTrans extends WebMvcConfigurerAdapter {
 	private Map<String, InfrastructDeal> posDataServiceMap;
 	@Resource
 	private SecurityService securityService;
-
+	private Logger logger = LoggerFactory.getLogger(ParkingSpotDataTrans.class);
 	@RequestMapping(value = "/getSession", method = RequestMethod.GET)
 	public void getSession(HttpServletRequest request, HttpServletResponse response) {
 		try {
@@ -74,18 +78,18 @@ public class ParkingSpotDataTrans extends WebMvcConfigurerAdapter {
 	}
 
 	@RequestMapping(value = "/syncParkingBasicData", method = RequestMethod.POST)
-	public void create(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	@ResponseBody
+	public Security create(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		logger.error("===========");
 		String method = request.getParameter("method");
 		try {
-			InfrastructDeal ideal = posDataServiceMap.get(method);
-			String responseResult = "";
-			if (ideal != null) {
-				responseResult = ideal.accept(request);
-			}
-			response.getWriter().write(responseResult);
+			Security ideal = securityService.getSecurityByKey("");
+			return ideal;
 		} catch (Exception ex) {
-			throw ex;
+			System.out.println("run Exception={}"+ex.getMessage());
+			return new Security();
 		}
+
 	}
 
 	public void addInterceptors(InterceptorRegistry registry) {

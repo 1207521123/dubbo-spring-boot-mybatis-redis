@@ -17,7 +17,7 @@ public class SecurityServiceImpl implements SecurityService {
 	@Override
 	public Security getSecurityByKey(String key) {
 		// TODO Auto-generated method stub
-		Security security = securityMapper.selectByPrimaryKey(key);
+		Security security = securityMapper.selectByPrimaryKey("0eca8f5373ca4866aec2f8e9d9367104");
 		return security;
 	}
 }

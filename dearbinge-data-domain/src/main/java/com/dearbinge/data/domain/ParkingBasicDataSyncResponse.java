@@ -9,6 +9,7 @@ public class ParkingBasicDataSyncResponse {
 	private String message;
 	private int code;
 	private Boolean successful;
+	private String secret_key;
 
 	public String getPark_id() {
 		return this.park_id;
