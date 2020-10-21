@@ -42,4 +42,12 @@ public class ParkingBasicDataSyncResponse {
 	public void setSuccessful(Boolean successful) {
 		this.successful = successful;
 	}
+
+	public String getSecret_key() {
+		return secret_key;
+	}
+
+	public void setSecret_key(String secret_key) {
+		this.secret_key = secret_key;
+	}
 }
